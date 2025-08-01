@@ -119,7 +119,7 @@ $saldo = $_SESSION['saldo'] ?? '0.00';
 
                 <!-- Filtros -->
                 <div class="card">
-                    <form method="GET" class="form-modern">
+                    <form method="GET" class="form-modern" id="filtros-form">
                         <div class="grid-3">
                             <!-- Filtro: Hijo -->
                             <div class="input-group">
@@ -151,10 +151,6 @@ $saldo = $_SESSION['saldo'] ?? '0.00';
                                     <input type="date" id="hasta" name="hasta" value="<?= htmlspecialchars($hasta) ?>">
                                 </div>
                             </div>
-                        </div>
-
-                        <div class="form-buttons">
-                            <button class="btn btn-aceptar" type="submit">Aplicar filtros</button>
                         </div>
                     </form>
                 </div>
@@ -241,6 +237,29 @@ $saldo = $_SESSION['saldo'] ?? '0.00';
             </section>
         </div>
     </div>
+
+    <!-- filtros dinamicos -->
+    <script>
+function cargarDatosConAjax() {
+    const form = document.getElementById('filtros-form');
+    const params = new URLSearchParams(new FormData(form)).toString();
+
+    fetch('papa_dashboard.php?' + params + '&ajax=1')
+        .then(res => res.json())
+        .then(data => {
+            if (data.error) return alert(data.error);
+            document.querySelectorAll('table.data-table tbody')[0].innerHTML = data.comida;
+            document.querySelectorAll('table.data-table tbody')[1].innerHTML = data.saldo;
+        })
+        .catch(err => console.error('Error AJAX:', err));
+}
+
+// Detectar cambios automáticamente
+document.querySelectorAll('#filtros-form input, #filtros-form select').forEach(elem => {
+    elem.addEventListener('change', cargarDatosConAjax);
+});
+    </script>
+
     <!-- Spinner Global -->
     <script src="../partials/spinner-global.js"></script>
 
