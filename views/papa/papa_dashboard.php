@@ -22,7 +22,7 @@ if (!isset($_SESSION['usuario'])) {
 }
 
 // 🔐 Protección por rol
-if (!isset($_SESSION['rol']) || $_SESSION['rol'] !== 'papa') {
+if (!isset($_SESSION['rol']) || $_SESSION['rol'] !== 'papas') {
     die("🚫 Acceso restringido: esta página es solo para usuarios papa.");
 }
 
