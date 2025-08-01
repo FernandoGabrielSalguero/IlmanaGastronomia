@@ -16,18 +16,23 @@ if (isset($_GET['ajax']) && $_GET['ajax'] == 1) {
     header('Content-Type: application/json');
 
     ob_start();
-    foreach ($pedidosComida as $pedido): ?>
-        <tr>
-            <td><?= $pedido['Id'] ?></td>
-            <td><?= $pedido['Fecha_entrega'] ?></td>
-            <td><?= $pedido['Fecha_pedido'] ?></td>
-            <td>
-                <span class="badge <?= $pedido['Estado'] === 'Procesando' ? 'success' : 'danger' ?>">
-                    <?= $pedido['Estado'] ?>
-                </span>
-            </td>
-        </tr>
-    <?php endforeach;
+foreach ($pedidosComida as $pedido): ?>
+    <tr>
+        <td><?= $pedido['Id'] ?></td>
+        <td>
+            <button class="btn btn-editar btn-xs">🔍</button>
+        </td>
+        <td><?= htmlspecialchars($pedido['Alumno']) ?></td>
+        <td><?= htmlspecialchars($pedido['Menu']) ?></td>
+        <td><?= $pedido['Fecha_entrega'] ?></td>
+        <td>
+            <span class="badge <?= $pedido['Estado'] === 'Procesando' ? 'success' : 'danger' ?>">
+                <?= $pedido['Estado'] ?>
+            </span>
+        </td>
+    </tr>
+<?php endforeach;
+
     $tablaComida = ob_get_clean();
 
     ob_start();

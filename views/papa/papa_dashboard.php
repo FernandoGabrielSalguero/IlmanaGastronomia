@@ -201,13 +201,16 @@ $saldo = $_SESSION['saldo'] ?? '0.00';
                         <div class="tabla-wrapper">
                             <table class="data-table">
                                 <thead>
-                                    <tr>
-                                        <th>#</th>
-                                        <th>Monto</th>
-                                        <th>Estado</th>
-                                        <th>Fecha Pedido</th>
-                                    </tr>
-                                </thead>
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Acción</th>
+                                            <th>Alumno</th>
+                                            <th>Menú</th>
+                                            <th>Fecha de entrega</th>
+                                            <th>Estado</th>
+                                        </tr>
+                                    </thead>
                                 <tbody>
                                     <?php if (!empty($pedidosSaldo)): ?>
                                         <?php foreach ($pedidosSaldo as $saldo): ?>
@@ -240,24 +243,24 @@ $saldo = $_SESSION['saldo'] ?? '0.00';
 
     <!-- filtros dinamicos -->
     <script>
-function cargarDatosConAjax() {
-    const form = document.getElementById('filtros-form');
-    const params = new URLSearchParams(new FormData(form)).toString();
+        function cargarDatosConAjax() {
+            const form = document.getElementById('filtros-form');
+            const params = new URLSearchParams(new FormData(form)).toString();
 
-    fetch('papa_dashboard.php?' + params + '&ajax=1')
-        .then(res => res.json())
-        .then(data => {
-            if (data.error) return alert(data.error);
-            document.querySelectorAll('table.data-table tbody')[0].innerHTML = data.comida;
-            document.querySelectorAll('table.data-table tbody')[1].innerHTML = data.saldo;
-        })
-        .catch(err => console.error('Error AJAX:', err));
-}
+            fetch('papa_dashboard.php?' + params + '&ajax=1')
+                .then(res => res.json())
+                .then(data => {
+                    if (data.error) return alert(data.error);
+                    document.querySelectorAll('table.data-table tbody')[0].innerHTML = data.comida;
+                    document.querySelectorAll('table.data-table tbody')[1].innerHTML = data.saldo;
+                })
+                .catch(err => console.error('Error AJAX:', err));
+        }
 
-// Detectar cambios automáticamente
-document.querySelectorAll('#filtros-form input, #filtros-form select').forEach(elem => {
-    elem.addEventListener('change', cargarDatosConAjax);
-});
+        // Detectar cambios automáticamente
+        document.querySelectorAll('#filtros-form input, #filtros-form select').forEach(elem => {
+            elem.addEventListener('change', cargarDatosConAjax);
+        });
     </script>
 
     <!-- Spinner Global -->
