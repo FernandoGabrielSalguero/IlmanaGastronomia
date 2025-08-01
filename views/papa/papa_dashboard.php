@@ -110,6 +110,13 @@ $saldo = $_SESSION['saldo'] ?? '0.00';
         width: 120px;
         text-align: center;
     }
+
+    /* Permitir que el texto del menú haga salto de línea */
+.col-menu {
+    width: 180px;
+    white-space: normal !important;
+    overflow-wrap: break-word;
+}
 </style>
 
 <body>
