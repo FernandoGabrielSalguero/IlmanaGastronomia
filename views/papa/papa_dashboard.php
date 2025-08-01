@@ -259,8 +259,8 @@ $saldo = $_SESSION['saldo'] ?? '0.00';
                                             <tr>
                                                 <td class="col-id"><?= $pedido['Id'] ?></td>
                                                 <td class="col-accion"><button class="btn btn-small">Cancelar</button></td>
-                                                <td class="col-alumno"><?= htmlspecialchars($pedido['Alumno']) ?></td>
-                                                <td class="col-menu"><?= htmlspecialchars($pedido['Menu']) ?></td>
+                                                <td class="col-alumno breakable"><?= htmlspecialchars($pedido['Alumno']) ?></td>
+                                                <td class="col-menu breakable"><?= htmlspecialchars($pedido['Menu']) ?></td>
                                                 <td class="col-entrega"><?= $pedido['Fecha_entrega'] ?></td>
                                                 <td class="col-estado">
                                                     <span class="badge <?= $pedido['Estado'] === 'Procesando' ? 'success' : 'danger' ?>">
