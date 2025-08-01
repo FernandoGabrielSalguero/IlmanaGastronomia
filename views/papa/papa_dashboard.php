@@ -225,8 +225,11 @@ $saldo = $_SESSION['saldo'] ?? '0.00';
                                                 </td>
                                                 <td>
                                                     <?php if (!empty($saldo['Comprobante'])): ?>
-                                                        <a href="/uploads/tax_invoices/<?= urlencode($saldo['Comprobante']) ?>" target="_blank" class="btn btn-icon" title="Ver comprobante">
-                                                            <span class="material-icons">insert_drive_file</span>
+                                                        <a href="/sistema/uploads/tax_invoices/<?= urlencode($saldo['Comprobante']) ?>"
+                                                            target="_blank"
+                                                            class="btn btn-icon"
+                                                            title="Ver comprobante">
+                                                            <span class="material-icons">visibility</span>
                                                         </a>
                                                     <?php else: ?>
                                                         <span class="text-muted">—</span>
