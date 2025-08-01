@@ -40,20 +40,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $_SESSION['nombre'] = $user['Nombre'];
         $_SESSION['correo'] = $user['Correo'];
         $_SESSION['telefono'] = $user['Telefono'];
-        $_SESSION['rol'] = $user['Rol'];
+        $_SESSION['Rol'] = $user['Rol'];
         $_SESSION['estado'] = $user['Estado'];
         $_SESSION['saldo'] = $user['Saldo'] ?? 0.00;
         $_SESSION['LAST_ACTIVITY'] = time();
-
-        // Redirección obligatoria si falta contraseña y es asociado
-        if (
-            empty($user['contrasena']) &&
-            $user['rol'] === 'asociado' &&
-            $user['estado'] === 'activo'
-        ) {
-            header('Location: /views/partials/completar_datos.php');
-            exit;
-        }
 
         // Redirección por rol
         switch ($user['rol']) {
