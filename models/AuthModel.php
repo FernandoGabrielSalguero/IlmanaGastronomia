@@ -25,7 +25,7 @@ class AuthModel
     u.telefono,
     u.dni,
     u.saldo
-    FROM usuarios u
+    FROM Usuarios  u
     WHERE u.usuario = :usuario
     LIMIT 1";
 
