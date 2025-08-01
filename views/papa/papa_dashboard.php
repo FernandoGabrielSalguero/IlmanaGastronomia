@@ -150,79 +150,107 @@ $saldo = $_SESSION['saldo'] ?? '0.00';
                 <!-- Tablas de resultados -->
                 <div class="card-grid grid-2">
                     <!-- Tabla con pedidos de comida -->
-                    <div class="card">
-                        <h3>Pedidos de Comida</h3>
-                        <?php if (count($pedidosComida) > 0): ?>
-                            <table class="table-modern">
+                    <div class="card tabla-card">
+                        <h2>Tablas</h2>
+                        <div class="tabla-wrapper">
+                            <table class="data-table">
                                 <thead>
                                     <tr>
                                         <th>#</th>
-                                        <th>Fecha entrega</th>
-                                        <th>Fecha pedido</th>
+                                        <th>Nombre</th>
+                                        <th>Apellido</th>
+                                        <th>Apodo</th>
+                                        <th>Edad</th>
+                                        <th>Genero</th>
+                                        <th>Estado civil</th>
+                                        <th>Antecedentes</th>
+                                        <th>Email</th>
+                                        <th>Rol</th>
                                         <th>Estado</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php foreach ($pedidosComida as $i => $pedido): ?>
-                                        <tr>
-                                            <td><?= $i + 1 ?></td>
-                                            <td><?= htmlspecialchars($pedido['Fecha_entrega']) ?></td>
-                                            <td><?= htmlspecialchars($pedido['Fecha_pedido']) ?></td>
-                                            <td>
-                                                <?php if ($pedido['Estado'] === 'Procesando'): ?>
-                                                    <span class="badge badge-warning">Procesando</span>
-                                                <?php elseif ($pedido['Estado'] === 'Cancelado'): ?>
-                                                    <span class="badge badge-danger">Cancelado</span>
-                                                <?php else: ?>
-                                                    <span class="badge badge-neutral"><?= htmlspecialchars($pedido['Estado']) ?></span>
-                                                <?php endif; ?>
-                                            </td>
-                                        </tr>
-                                    <?php endforeach; ?>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>Carlos</td>
+                                        <td>Ruiz</td>
+                                        <td>Carlos</td>
+                                        <td>19</td>
+                                        <td>Masculino</td>
+                                        <td>Soltero</td>
+                                        <td>Sin precedentes</td>
+                                        <td>carlos@mail.com</td>
+                                        <td>Administrador</td>
+                                        <td><span class="badge success">Activo</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td>Laura</td>
+                                        <td>Méndez</td>
+                                        <td>Laura</td>
+                                        <td>22</td>
+                                        <td>Femenino</td>
+                                        <td>Soltera</td>
+                                        <td>Con antecedentes</td>
+                                        <td>laura@mail.com</td>
+                                        <td>Editor</td>
+                                        <td><span class="badge warning">Pendiente</span></td>
+                                    </tr>
                                 </tbody>
                             </table>
-                        <?php else: ?>
-                            <p>No hay pedidos de comida.</p>
-                        <?php endif; ?>
+                        </div>
                     </div>
 
                     <!-- Tabla con epdidos de saldo -->
-                    <div class="card">
-                        <h3>Pedidos de Saldo</h3>
-                        <?php if (count($pedidosSaldo) > 0): ?>
-                            <table class="table-modern">
+                    <div class="card tabla-card">
+                        <h2>Tablas</h2>
+                        <div class="tabla-wrapper">
+                            <table class="data-table">
                                 <thead>
                                     <tr>
                                         <th>#</th>
-                                        <th>Saldo</th>
+                                        <th>Nombre</th>
+                                        <th>Apellido</th>
+                                        <th>Apodo</th>
+                                        <th>Edad</th>
+                                        <th>Genero</th>
+                                        <th>Estado civil</th>
+                                        <th>Antecedentes</th>
+                                        <th>Email</th>
+                                        <th>Rol</th>
                                         <th>Estado</th>
-                                        <th>Fecha pedido</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php foreach ($pedidosSaldo as $i => $saldo): ?>
-                                        <tr>
-                                            <td><?= $i + 1 ?></td>
-                                            <td>$<?= number_format($saldo['Saldo'], 2, ',', '.') ?></td>
-                                            <td>
-                                                <?php if ($saldo['Estado'] === 'Aprobado'): ?>
-                                                    <span class="badge badge-success">Aprobado</span>
-                                                <?php elseif ($saldo['Estado'] === 'Pendiente de aprobación'): ?>
-                                                    <span class="badge badge-warning">Pendiente</span>
-                                                <?php elseif ($saldo['Estado'] === 'Cancelado'): ?>
-                                                    <span class="badge badge-danger">Cancelado</span>
-                                                <?php else: ?>
-                                                    <span class="badge badge-neutral"><?= htmlspecialchars($saldo['Estado']) ?></span>
-                                                <?php endif; ?>
-                                            </td>
-                                            <td><?= htmlspecialchars($saldo['Fecha_pedido']) ?></td>
-                                        </tr>
-                                    <?php endforeach; ?>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>Carlos</td>
+                                        <td>Ruiz</td>
+                                        <td>Carlos</td>
+                                        <td>19</td>
+                                        <td>Masculino</td>
+                                        <td>Soltero</td>
+                                        <td>Sin precedentes</td>
+                                        <td>carlos@mail.com</td>
+                                        <td>Administrador</td>
+                                        <td><span class="badge success">Activo</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td>Laura</td>
+                                        <td>Méndez</td>
+                                        <td>Laura</td>
+                                        <td>22</td>
+                                        <td>Femenino</td>
+                                        <td>Soltera</td>
+                                        <td>Con antecedentes</td>
+                                        <td>laura@mail.com</td>
+                                        <td>Editor</td>
+                                        <td><span class="badge warning">Pendiente</span></td>
+                                    </tr>
                                 </tbody>
                             </table>
-                        <?php else: ?>
-                            <p>No hay pedidos de saldo.</p>
-                        <?php endif; ?>
+                        </div>
                     </div>
 
                 </div>
