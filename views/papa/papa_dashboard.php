@@ -166,7 +166,10 @@ $saldo = $_SESSION['saldo'] ?? '0.00';
                                 <thead>
                                     <tr>
                                         <th>#</th>
-                                        <th>Fecha Entrega</th>
+                                        <th>Acción</th>
+                                        <th>Alumno</th>
+                                        <th>Menú</th>
+                                        <th>Fecha de entrega</th>
                                         <th>Estado</th>
                                     </tr>
                                 </thead>
@@ -175,6 +178,9 @@ $saldo = $_SESSION['saldo'] ?? '0.00';
                                         <?php foreach ($pedidosComida as $pedido): ?>
                                             <tr>
                                                 <td><?= $pedido['Id'] ?></td>
+                                                <td><button class="btn btn-small">Ver</button></td>
+                                                <td><?= htmlspecialchars($pedido['Alumno']) ?></td>
+                                                <td><?= htmlspecialchars($pedido['Menu']) ?></td>
                                                 <td><?= $pedido['Fecha_entrega'] ?></td>
                                                 <td>
                                                     <span class="badge <?= $pedido['Estado'] === 'Procesando' ? 'success' : 'danger' ?>">
@@ -185,7 +191,7 @@ $saldo = $_SESSION['saldo'] ?? '0.00';
                                         <?php endforeach; ?>
                                     <?php else: ?>
                                         <tr>
-                                            <td colspan="4">No hay pedidos de comida.</td>
+                                            <td colspan="6">No hay pedidos de comida.</td>
                                         </tr>
                                     <?php endif; ?>
                                 </tbody>
@@ -199,16 +205,13 @@ $saldo = $_SESSION['saldo'] ?? '0.00';
                         <div class="tabla-wrapper">
                             <table class="data-table">
                                 <thead>
-                                    <thead>
-                                        <tr>
-                                            <th>#</th>
-                                            <th>Acción</th>
-                                            <th>Alumno</th>
-                                            <th>Menú</th>
-                                            <th>Fecha de entrega</th>
-                                            <th>Estado</th>
-                                        </tr>
-                                    </thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Saldo</th>
+                                        <th>Estado</th>
+                                        <th>Comprobante</th>
+                                    </tr>
+                                </thead>
                                 <tbody>
                                     <?php if (!empty($pedidosSaldo)): ?>
                                         <?php foreach ($pedidosSaldo as $saldo): ?>
@@ -220,7 +223,7 @@ $saldo = $_SESSION['saldo'] ?? '0.00';
                                                         <?= $saldo['Estado'] ?>
                                                     </span>
                                                 </td>
-                                                <td><?= $saldo['Fecha_pedido'] ?></td>
+                                                <td><?= htmlspecialchars($saldo['Comprobante']) ?: '—' ?></td>
                                             </tr>
                                         <?php endforeach; ?>
                                     <?php else: ?>
@@ -229,6 +232,7 @@ $saldo = $_SESSION['saldo'] ?? '0.00';
                                         </tr>
                                     <?php endif; ?>
                                 </tbody>
+
                             </table>
                         </div>
                     </div>
