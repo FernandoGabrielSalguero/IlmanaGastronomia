@@ -214,7 +214,7 @@ $saldo = $_SESSION['saldo'] ?? '0.00';
                             <div class="input-group">
                                 <label for="desde">Desde</label>
                                 <div class="input-icon input-icon-date">
-                                    <input type="date" id="desde" name="desde" value="<?= htmlspecialchars($desde) ?>">
+                                    <input type="date" id="desde" name="desde" value="<?= isset($desde) && $desde !== null ? htmlspecialchars($desde) : '' ?>">
                                 </div>
                             </div>
 
@@ -222,7 +222,8 @@ $saldo = $_SESSION['saldo'] ?? '0.00';
                             <div class="input-group">
                                 <label for="hasta">Hasta</label>
                                 <div class="input-icon input-icon-date">
-                                    <input type="date" id="hasta" name="hasta" value="<?= htmlspecialchars($hasta) ?>">
+                                    <input type="date" id="hasta" name="hasta" value="<?= isset($hasta) && $hasta !== null ? htmlspecialchars($hasta) : '' ?>"
+>
                                 </div>
                             </div>
                         </div>
