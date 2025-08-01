@@ -117,94 +117,115 @@ $saldo = $_SESSION['saldo'] ?? '0.00';
                     <p>En esta página, vamos a tener KPI.</p>
                 </div>
 
-<!-- Filtros -->
-<div class="card">
-    <form method="GET" class="form-modern">
-        <div class="grid-3">
-            <div class="input-group">
-                <label for="desde">Desde</label>
-                <input type="date" name="desde" value="<?= htmlspecialchars($desde) ?>">
-            </div>
-            <div class="input-group">
-                <label for="hasta">Hasta</label>
-                <input type="date" name="hasta" value="<?= htmlspecialchars($hasta) ?>">
-            </div>
-            <div class="input-group">
-                <label for="hijo_id">Hijo</label>
-                <select name="hijo_id">
-                    <option value="">Todos</option>
-                    <?php foreach ($hijos as $hijo): ?>
-                        <option value="<?= $hijo['Id'] ?>" <?= $hijoSeleccionado == $hijo['Id'] ? 'selected' : '' ?>>
-                            <?= htmlspecialchars($hijo['Nombre']) ?>
-                        </option>
-                    <?php endforeach; ?>
-                </select>
-            </div>
-        </div>
-        <div class="form-buttons">
-            <button class="btn btn-aceptar" type="submit">Aplicar Filtros</button>
-        </div>
-    </form>
-</div>
+                <!-- Filtros -->
+                <div class="card">
+                    <form method="GET" class="form-modern">
+                        <div class="grid-3">
+                            <div class="input-group">
+                                <label for="desde">Desde</label>
+                                <input type="date" name="desde" value="<?= htmlspecialchars($desde) ?>">
+                            </div>
+                            <div class="input-group">
+                                <label for="hasta">Hasta</label>
+                                <input type="date" name="hasta" value="<?= htmlspecialchars($hasta) ?>">
+                            </div>
+                            <div class="input-group">
+                                <label for="hijo_id">Hijo</label>
+                                <select name="hijo_id">
+                                    <option value="">Todos</option>
+                                    <?php foreach ($hijos as $hijo): ?>
+                                        <option value="<?= $hijo['Id'] ?>" <?= $hijoSeleccionado == $hijo['Id'] ? 'selected' : '' ?>>
+                                            <?= htmlspecialchars($hijo['Nombre']) ?>
+                                        </option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-buttons">
+                            <button class="btn btn-aceptar" type="submit">Aplicar Filtros</button>
+                        </div>
+                    </form>
+                </div>
 
-<!-- Tablas de resultados -->
-<div class="card-grid grid-2">
-    <div class="card">
-        <h3>Pedidos de Comida</h3>
-        <?php if (count($pedidosComida) > 0): ?>
-            <table class="table-modern">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Fecha entrega</th>
-                        <th>Fecha pedido</th>
-                        <th>Estado</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php foreach ($pedidosComida as $pedido): ?>
-                        <tr>
-                            <td><?= $pedido['Id'] ?></td>
-                            <td><?= $pedido['Fecha_entrega'] ?></td>
-                            <td><?= $pedido['Fecha_pedido'] ?></td>
-                            <td><?= $pedido['Estado'] ?></td>
-                        </tr>
-                    <?php endforeach; ?>
-                </tbody>
-            </table>
-        <?php else: ?>
-            <p>No hay pedidos de comida.</p>
-        <?php endif; ?>
-    </div>
+                <!-- Tablas de resultados -->
+                <div class="card-grid grid-2">
+                    <!-- Tabla con pedidos de comida -->
+                    <div class="card">
+                        <h3>Pedidos de Comida</h3>
+                        <?php if (count($pedidosComida) > 0): ?>
+                            <table class="table-modern">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Fecha entrega</th>
+                                        <th>Fecha pedido</th>
+                                        <th>Estado</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php foreach ($pedidosComida as $i => $pedido): ?>
+                                        <tr>
+                                            <td><?= $i + 1 ?></td>
+                                            <td><?= htmlspecialchars($pedido['Fecha_entrega']) ?></td>
+                                            <td><?= htmlspecialchars($pedido['Fecha_pedido']) ?></td>
+                                            <td>
+                                                <?php if ($pedido['Estado'] === 'Procesando'): ?>
+                                                    <span class="badge badge-warning">Procesando</span>
+                                                <?php elseif ($pedido['Estado'] === 'Cancelado'): ?>
+                                                    <span class="badge badge-danger">Cancelado</span>
+                                                <?php else: ?>
+                                                    <span class="badge badge-neutral"><?= htmlspecialchars($pedido['Estado']) ?></span>
+                                                <?php endif; ?>
+                                            </td>
+                                        </tr>
+                                    <?php endforeach; ?>
+                                </tbody>
+                            </table>
+                        <?php else: ?>
+                            <p>No hay pedidos de comida.</p>
+                        <?php endif; ?>
+                    </div>
 
-    <div class="card">
-        <h3>Pedidos de Saldo</h3>
-        <?php if (count($pedidosSaldo) > 0): ?>
-            <table class="table-modern">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Saldo</th>
-                        <th>Estado</th>
-                        <th>Fecha pedido</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php foreach ($pedidosSaldo as $saldo): ?>
-                        <tr>
-                            <td><?= $saldo['Id'] ?></td>
-                            <td>$<?= number_format($saldo['Saldo'], 2, ',', '.') ?></td>
-                            <td><?= $saldo['Estado'] ?></td>
-                            <td><?= $saldo['Fecha_pedido'] ?></td>
-                        </tr>
-                    <?php endforeach; ?>
-                </tbody>
-            </table>
-        <?php else: ?>
-            <p>No hay pedidos de saldo.</p>
-        <?php endif; ?>
-    </div>
-</div>
+                    <!-- Tabla con epdidos de saldo -->
+                    <div class="card">
+                        <h3>Pedidos de Saldo</h3>
+                        <?php if (count($pedidosSaldo) > 0): ?>
+                            <table class="table-modern">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Saldo</th>
+                                        <th>Estado</th>
+                                        <th>Fecha pedido</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php foreach ($pedidosSaldo as $i => $saldo): ?>
+                                        <tr>
+                                            <td><?= $i + 1 ?></td>
+                                            <td>$<?= number_format($saldo['Saldo'], 2, ',', '.') ?></td>
+                                            <td>
+                                                <?php if ($saldo['Estado'] === 'Aprobado'): ?>
+                                                    <span class="badge badge-success">Aprobado</span>
+                                                <?php elseif ($saldo['Estado'] === 'Pendiente de aprobación'): ?>
+                                                    <span class="badge badge-warning">Pendiente</span>
+                                                <?php elseif ($saldo['Estado'] === 'Cancelado'): ?>
+                                                    <span class="badge badge-danger">Cancelado</span>
+                                                <?php else: ?>
+                                                    <span class="badge badge-neutral"><?= htmlspecialchars($saldo['Estado']) ?></span>
+                                                <?php endif; ?>
+                                            </td>
+                                            <td><?= htmlspecialchars($saldo['Fecha_pedido']) ?></td>
+                                        </tr>
+                                    <?php endforeach; ?>
+                                </tbody>
+                            </table>
+                        <?php else: ?>
+                            <p>No hay pedidos de saldo.</p>
+                        <?php endif; ?>
+                    </div>
+
+                </div>
 
             </section>
         </div>
