@@ -105,6 +105,14 @@ $saldo = $_SESSION['saldo'] ?? '0.00';
     word-break: break-word;      /* Compatibilidad con navegadores */
 }
 
+/* ancho boton de comprobante */
+.max-40 {
+    max-width: 40px;
+    width: 1%; /* 👈 fuerza que se adapte al mínimo posible */
+    text-align: center;
+    white-space: nowrap;
+}
+
 </style>
 
 <body>
@@ -259,7 +267,7 @@ $saldo = $_SESSION['saldo'] ?? '0.00';
                                         <th >#</th>
                                         <th >Saldo</th>
                                         <th >Estado</th>
-                                        <th >Comprobante</th>
+                                        <th class="max-40" >Comprobante</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -273,19 +281,18 @@ $saldo = $_SESSION['saldo'] ?? '0.00';
                                                         <?= $saldo['Estado'] ?>
                                                     </span>
                                                 </td>
-                                                <td >
-                                                    <?php if (!empty($saldo['Comprobante'])): ?>
-                                                        <a href="/sistema/uploads/tax_invoices/<?= urlencode($saldo['Comprobante']) ?>"
-                                                            target="_blank"
-                                                            class="btn-icon"
-                                                            title="Ver comprobante"
-                                                            style="text-decoration: none;">
-                                                            <span class="material-icons" style="color: #5b21b6;">visibility</span>
-                                                        </a>
-                                                    <?php else: ?>
-                                                        <span class="text-muted">—</span>
-                                                    <?php endif; ?>
-                                                </td>
+<td class="max-40">
+    <?php if (!empty($saldo['Comprobante'])): ?>
+        <a href="/sistema/uploads/tax_invoices/<?= urlencode($saldo['Comprobante']) ?>"
+            target="_blank"
+            title="Ver comprobante"
+            style="display: inline-block; padding: 0; margin: 0; text-decoration: none;">
+            <span class="material-icons" style="font-size: 20px; color: #5b21b6;">visibility</span>
+        </a>
+    <?php else: ?>
+        <span class="text-muted">—</span>
+    <?php endif; ?>
+</td>
                                             </tr>
                                         <?php endforeach; ?>
                                     <?php else: ?>
