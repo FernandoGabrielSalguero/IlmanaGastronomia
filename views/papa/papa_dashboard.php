@@ -16,21 +16,24 @@ if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > 
 }
 $_SESSION['LAST_ACTIVITY'] = time(); // Actualiza el tiempo de actividad
 
-// 🚧 Protección de acceso general
-if (!isset($_SESSION['usuario'])) {
-    die("⚠️ Acceso denegado. No has iniciado sesión.");
+// 🧿 Control de sesión activa
+if (!isset($_SESSION['usuario_id']) || empty($_SESSION['nombre'])) {
+    header("Location: /index.php?expired=1");
+    exit;
 }
 
-// 🔐 Protección por rol
+// 🔐 Validación estricta por rol
 if (!isset($_SESSION['rol']) || $_SESSION['rol'] !== 'papas') {
-    die("🚫 Acceso restringido: esta página es solo para usuarios papa.");
+    die("🚫 Acceso restringido: esta sección es solo para el rol 'papas'.");
 }
 
-// Datos del usuario en sesión
+// 📦 Asignación de datos desde sesión
+$usuario_id = $_SESSION['usuario_id'];
+$usuario = $_SESSION['usuario'] ?? 'Sin usuario';
 $nombre = $_SESSION['nombre'] ?? 'Sin nombre';
 $correo = $_SESSION['correo'] ?? 'Sin correo';
-$usuario = $_SESSION['usuario'] ?? 'Sin usuario';
 $telefono = $_SESSION['telefono'] ?? 'Sin teléfono';
+$saldo = $_SESSION['saldo'] ?? '0.00';
 
 
 ?>
