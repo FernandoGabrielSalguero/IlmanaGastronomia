@@ -223,7 +223,15 @@ $saldo = $_SESSION['saldo'] ?? '0.00';
                                                         <?= $saldo['Estado'] ?>
                                                     </span>
                                                 </td>
-                                                <td><?= htmlspecialchars($saldo['Comprobante']) ?: '—' ?></td>
+                                                <td>
+                                                    <?php if (!empty($saldo['Comprobante'])): ?>
+                                                        <a href="/uploads/tax_invoices/<?= urlencode($saldo['Comprobante']) ?>" target="_blank" class="btn btn-icon" title="Ver comprobante">
+                                                            <span class="material-icons">insert_drive_file</span>
+                                                        </a>
+                                                    <?php else: ?>
+                                                        <span class="text-muted">—</span>
+                                                    <?php endif; ?>
+                                                </td>
                                             </tr>
                                         <?php endforeach; ?>
                                     <?php else: ?>
