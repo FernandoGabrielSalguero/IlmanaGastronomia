@@ -22,8 +22,8 @@ if (!isset($_SESSION['usuario'])) {
 }
 
 // 🔐 Protección por rol
-if (!isset($_SESSION['rol']) || $_SESSION['rol'] !== 'asociado') {
-    die("🚫 Acceso restringido: esta página es solo para usuarios asociados.");
+if (!isset($_SESSION['rol']) || $_SESSION['rol'] !== 'admin') {
+    die("🚫 Acceso restringido: esta página es solo para usuarios Administrador.");
 }
 
 // Datos del usuario en sesión
@@ -41,7 +41,7 @@ $telefono = $_SESSION['telefono'] ?? 'Sin teléfono';
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>SVE</title>
+    <title>AMPD</title>
 
     <!-- Íconos de Material Design -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
@@ -65,26 +65,24 @@ $telefono = $_SESSION['telefono'] ?? 'Sin teléfono';
 
             <nav class="sidebar-menu">
                 <ul>
-                    <li onclick="location.href='asociado_dashboard.php'">
+                    <li onclick="location.href='admin_dashboard.php'">
                         <span class="material-icons" style="color: #5b21b6;">home</span><span class="link-text">Inicio</span>
                     </li>
-                    <li onclick="location.href='asociado_infoPersonal.php'">
-                        <span class="material-icons" style="color: #5b21b6;">person</span><span class="link-text">Información Personal</span>
+                    <li onclick="location.href='admin_altaUsuarios.php'">
+                        <span class="material-icons" style="color: #5b21b6;">person</span><span class="link-text">Alta usuarios</span>
                     </li>
-                    <li onclick="location.href='asociado_solicitudPago.php'">
-                        <span class="material-icons" style="color: #5b21b6;">attach_money</span><span class="link-text">Solicitud pago</span>
+                    <li onclick="location.href='admin_importarUsuarios.php'">
+                        <span class="material-icons" style="color: #5b21b6;">upload_file</span><span class="link-text">Carga Masiva</span>
                     </li>
-                    <li onclick="location.href='asociado_pagoSuscripcion.php'">
-                        <span class="material-icons" style="color: #5b21b6;">assignment</span><span class="link-text">Suscripción</span>
-                    </li>
-                    <li onclick="location.href='asociado_certificados.php'">
-                        <span class="material-icons" style="color: #5b21b6;">workspace_premium</span><span class="link-text">Certificado</span>
+                    <li onclick="location.href='admin_pagoFacturas.php'">
+                        <span class="material-icons" style="color: #5b21b6;">attach_money</span><span class="link-text">Pago Facturas</span>
                     </li>
                     <li onclick="location.href='../../../logout.php'">
                         <span class="material-icons" style="color: red;">logout</span><span class="link-text">Salir</span>
                     </li>
                 </ul>
             </nav>
+
 
             <div class="sidebar-footer">
                 <button class="btn-icon" onclick="toggleSidebar()">
@@ -104,16 +102,15 @@ $telefono = $_SESSION['telefono'] ?? 'Sin teléfono';
                 <div class="navbar-title">Inicio</div>
             </header>
 
-
-
             <!-- 📦 CONTENIDO -->
             <section class="content">
 
                 <!-- Bienvenida -->
                 <div class="card">
                     <h2>Hola 👋</h2>
-                    <p>En esta página, podemos mostrarle algunas metricas al usuario "asociado" esta páginas es opcional.</p>
+                    <p>En esta página, vamos a tener KPI.</p>
                 </div>
+
 
                 <div class="card-grid grid-4">
                     <div class="card">

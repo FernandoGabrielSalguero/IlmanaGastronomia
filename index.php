@@ -33,16 +33,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $user = $auth->login($usuario, $contrasena);
 
     if ($user) {
-        // Guardar datos en sesión
+        // Guardar solo los datos de la tabla Usuarios en sesión
+        $_SESSION['usuario_id'] = $user['id_real'];
         $_SESSION['usuario'] = $user['usuario'];
-        $_SESSION['rol'] = $user['rol'];
-        $_SESSION['id_real'] = $user['id_real'];
-        $_SESSION['nombre'] = $user['nombre'] ?? '';
-        $_SESSION['estado'] = $user['estado'];
-        $_SESSION['fecha_creacion'] = $user['fecha_creacion'];
-        $_SESSION['dni'] = $user['dni'];
+        $_SESSION['nombre'] = $user['nombre'];
         $_SESSION['correo'] = $user['correo'];
         $_SESSION['telefono'] = $user['telefono'];
+        $_SESSION['rol'] = $user['rol'];
+        $_SESSION['estado'] = $user['estado'];
+        $_SESSION['saldo'] = $user['saldo'] ?? 0.00;
         $_SESSION['LAST_ACTIVITY'] = time();
 
         // Redirección obligatoria si falta contraseña y es asociado
@@ -55,16 +54,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             exit;
         }
 
-        // Redirección normal por rol
+        // Redirección por rol
         switch ($user['rol']) {
-            case 'admin':
+            case 'administrador':
                 header('Location: /views/admin/admin_dashboard.php');
                 break;
-            case 'asistente':
-                header('Location: /views/asistente/asistente_dashboard.php');
+            case 'cocina':
+                header('Location: /views/cocina/cocina_dashboard.php');
                 break;
-            case 'asociado':
-                header('Location: /views/asociado/asociado_dashboard.php');
+            case 'cuyo_placa':
+                header('Location: /views/cuyo_placa/cuyo_placa_dashboard.php');
+                break;
+            case 'papa':
+                header('Location: /views/papa/papa_dashboard.php');
+                break;
+            case 'representante':
+                header('Location: /views/representante/representante_dashboard.php');
                 break;
             default:
                 die("Rol no reconocido: " . $user['rol']);
