@@ -57,94 +57,84 @@ $saldo = $_SESSION['saldo'] ?? '0.00';
     <script src="https://www.fernandosalguero.com/cdn/assets/javascript/framework.js" defer></script>
 </head>
 <style>
-    .tabla-wrapper {
-        max-height: 450px;
-        /* Ajusta si querés más o menos alto */
-        overflow-y: auto;
-    }
+    /* Estilos generales para tabla */
+.tabla-wrapper {
+    max-height: 450px;
+    overflow-y: auto;
+}
 
-    .tabla-wrapper table {
-        border-collapse: collapse;
-        width: 100%;
-    }
+.tabla-wrapper table {
+    border-collapse: collapse;
+    width: 100%;
+}
 
-    .tabla-wrapper thead th {
-        position: sticky;
-        top: 0;
-        background-color: #fff;
-        z-index: 2;
-    }
+.tabla-wrapper thead th {
+    position: sticky;
+    top: 0;
+    background-color: #fff;
+    z-index: 2;
+}
 
-    .tabla-wrapper tbody tr {
-        height: 44px;
-        /* Aproximadamente 9 filas entran en 400px */
-    }
+.tabla-wrapper tbody tr {
+    height: 44px;
+}
 
-    /* medidas columnas */
-    /* General: evita que las celdas se expandan sin límite */
-    .data-table th,
-    .data-table td {
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
+/* ✅ Estilos generales sin bloquear overrides */
+.data-table th,
+.data-table td {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    vertical-align: middle;
+    padding: 6px 8px;
+}
 
-    /* Anchos sugeridos para cada columna */
-    .col-id {
-        width: 60px;
-    }
-
-    .col-accion {
-        width: 80px;
-        text-align: center;
-    }
-
-    .col-alumno,
-    .col-menu {
-        width: 180px;
-    }
-
-    .col-alumno {
-    width: 100px;
+/* ✅ Utilidad para columnas con texto que puede cortar en varias líneas */
+.breakable {
     white-space: normal !important;
     overflow-wrap: break-word;
 }
 
-    .col-entrega,
-    .col-estado,
-    .col-comprobante {
-        width: 50px;
-        text-align: center;
-    }
-
-    /* Permitir que el texto del menú haga salto de línea */
-.col-menu {
-    width: 130px;
-    white-space: normal !important;
-    overflow-wrap: break-word;
-}
-
-/* estilos columna tabla pedidos saldo */
+/* 📐 Anchos columna pedidos comida */
 .col-id {
     width: 60px;
 }
 
+.col-accion {
+    width: 80px;
+    text-align: center;
+}
+
+.col-alumno {
+    min-width: 100px;
+    max-width: 140px;
+}
+
+.col-menu {
+    min-width: 120px;
+    max-width: 160px;
+}
+
+.col-entrega {
+    width: 120px;
+    text-align: center;
+}
+
+.col-estado {
+    width: 100px;
+    text-align: center;
+}
+
+/* 📐 Anchos columna pedidos saldo */
 .col-saldo {
     width: 100px;
     text-align: right;
 }
 
-.col-estado {
-    width: 80px;
+.col-comprobante {
+    width: 90px;
     text-align: center;
 }
 
-.col-comprobante {
-    width: 80px;
-    white-space: normal !important;
-    overflow-wrap: break-word;
-    text-align: center;
-}
 </style>
 
 <body>
@@ -294,14 +284,14 @@ $saldo = $_SESSION['saldo'] ?? '0.00';
                         <h2>Pedidos de saldo</h2>
                         <div class="tabla-wrapper">
                             <table class="data-table">
-<thead>
-    <tr>
-        <th class="col-id">#</th>
-        <th class="col-saldo">Saldo</th>
-        <th class="col-estado">Estado</th>
-        <th class="col-comprobante">Comprobante</th>
-    </tr>
-</thead>
+                                <thead>
+                                    <tr>
+                                        <th class="col-id">#</th>
+                                        <th class="col-saldo">Saldo</th>
+                                        <th class="col-estado">Estado</th>
+                                        <th class="col-comprobante">Comprobante</th>
+                                    </tr>
+                                </thead>
                                 <tbody>
                                     <?php if (!empty($pedidosSaldo)): ?>
                                         <?php foreach ($pedidosSaldo as $saldo): ?>
