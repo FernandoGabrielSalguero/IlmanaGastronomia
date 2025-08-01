@@ -105,7 +105,7 @@ $saldo = $_SESSION['saldo'] ?? '0.00';
     }
 
     .col-alumno {
-    width: 120px;
+    width: 100px;
     white-space: normal !important;
     overflow-wrap: break-word;
 }
@@ -113,13 +113,13 @@ $saldo = $_SESSION['saldo'] ?? '0.00';
     .col-entrega,
     .col-estado,
     .col-comprobante {
-        width: 120px;
+        width: 50px;
         text-align: center;
     }
 
     /* Permitir que el texto del menú haga salto de línea */
 .col-menu {
-    width: 180px;
+    width: 130px;
     white-space: normal !important;
     overflow-wrap: break-word;
 }
