@@ -58,83 +58,84 @@ $saldo = $_SESSION['saldo'] ?? '0.00';
 </head>
 <style>
     /* Estilos generales para tabla */
-.tabla-wrapper {
-    max-height: 450px;
-    overflow-y: auto;
-}
+    .tabla-wrapper {
+        max-height: 450px;
+        overflow-y: auto;
+        table-layout: fixed;
+    }
 
-.tabla-wrapper table {
-    border-collapse: collapse;
-    width: 100%;
-}
+    .tabla-wrapper table {
+        border-collapse: collapse;
+        width: 100%;
+    }
 
-.tabla-wrapper thead th {
-    position: sticky;
-    top: 0;
-    background-color: #fff;
-    z-index: 2;
-}
+    .tabla-wrapper thead th {
+        position: sticky;
+        top: 0;
+        background-color: #fff;
+        z-index: 2;
+    }
 
-.tabla-wrapper tbody tr {
-    height: 44px;
-}
+    .tabla-wrapper tbody tr {
+        height: 44px;
+    }
 
-/* ✅ Estilos generales sin bloquear overrides */
-.data-table th,
-.data-table td {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    vertical-align: middle;
-    padding: 6px 8px;
-}
+    /* ✅ Estilos generales sin bloquear overrides */
+    .data-table th,
+    .data-table td {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        vertical-align: middle;
+        padding: 6px 8px;
+        white-space: nowrap;
+    }
 
-/* ✅ Utilidad para columnas con texto que puede cortar en varias líneas */
-.breakable {
-    white-space: normal !important;
-    overflow-wrap: break-word;
-}
+    /* ✅ Utilidad para columnas con texto que puede cortar en varias líneas */
+    .breakable {
+        white-space: normal !important;
+        word-wrap: break-word;
+    }
 
-/* 📐 Anchos columna pedidos comida */
-.col-id {
-    width: 60px;
-}
+    /* 📐 Anchos columna pedidos comida */
+    .col-id {
+        width: 60px;
+    }
 
-.col-accion {
-    width: 80px;
-    text-align: center;
-}
+    .col-accion {
+        width: 80px;
+        text-align: center;
+    }
 
-.col-alumno {
-    min-width: 100px;
-    max-width: 101px;
-}
+    .col-alumno {
+        min-width: 100px;
+        max-width: 101px;
+    }
 
-.col-menu {
-    min-width: 100px;
-    max-width: 101px;
-}
+    .col-menu {
+        min-width: 100px;
+        max-width: 101px;
+    }
 
-.col-entrega {
-    width: 80px;
-    text-align: center;
-}
+    .col-entrega {
+        width: 80px;
+        text-align: center;
+    }
 
-.col-estado {
-    width: 80px;
-    text-align: center;
-}
+    .col-estado {
+        width: 80px;
+        text-align: center;
+    }
 
-/* 📐 Anchos columna pedidos saldo */
-.col-saldo {
-    width: 80px;
-    text-align: right;
-}
+    /* 📐 Anchos columna pedidos saldo */
+    .col-saldo {
+        width: 80px;
+        text-align: right;
+    }
 
-.col-comprobante {
-    width: 10px;
-    text-align: center;
-}
-
+    .col-comprobante {
+        width: 10px;
+        text-align: center;
+    }
 </style>
 
 <body>
