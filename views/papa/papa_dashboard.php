@@ -24,10 +24,6 @@ if (!isset($_SESSION['usuario_id']) || empty($_SESSION['nombre'])) {
     exit;
 }
 
-echo "<pre>";
-print_r($_SESSION);
-exit;
-
 // 🔐 Validación estricta por rol
 if (!isset($_SESSION['rol']) || $_SESSION['rol'] !== 'papas') {
     die("🚫 Acceso restringido: esta sección es solo para el rol 'papas'.");

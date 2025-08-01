@@ -40,7 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $_SESSION['nombre'] = $user['Nombre'];
         $_SESSION['correo'] = $user['Correo'];
         $_SESSION['telefono'] = $user['Telefono'];
-        $_SESSION['Rol'] = $user['Rol'];
+        $_SESSION['rol'] = $user['Rol'];
         $_SESSION['estado'] = $user['Estado'];
         $_SESSION['saldo'] = $user['Saldo'] ?? 0.00;
         $_SESSION['LAST_ACTIVITY'] = time();
