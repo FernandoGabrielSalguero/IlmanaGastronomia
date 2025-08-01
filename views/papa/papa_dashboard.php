@@ -106,7 +106,7 @@ $saldo = $_SESSION['saldo'] ?? '0.00';
         word-break: break-word;
     }
 
-        .max-80 {
+    .max-80 {
         max-width: 100px;
         white-space: normal;
         overflow-wrap: break-word;
@@ -273,7 +273,7 @@ $saldo = $_SESSION['saldo'] ?? '0.00';
                                 <thead>
                                     <tr>
                                         <th>#</th>
-                                        <th>Saldo</th>
+                                        <th class="max-80">Saldo</th>
                                         <th class="max-80">Estado</th>
                                         <th>Comprobante</th>
                                     </tr>
@@ -282,7 +282,7 @@ $saldo = $_SESSION['saldo'] ?? '0.00';
                                     <?php if (!empty($pedidosSaldo)): ?>
                                         <?php foreach ($pedidosSaldo as $saldo): ?>
                                             <tr>
-                                                <td><?= $saldo['Id'] ?></td>
+                                                <td class="max-80"><?= $saldo['Id'] ?></td>
                                                 <td>$<?= number_format($saldo['Saldo'], 2, ',', '.') ?></td>
                                                 <td class="max-80">
                                                     <span class="badge <?= $saldo['Estado'] === 'Aprobado' ? 'success' : ($saldo['Estado'] === 'Cancelado' ? 'danger' : 'warning') ?>">
