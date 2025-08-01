@@ -102,7 +102,7 @@ $saldo = $_SESSION['saldo'] ?? '0.00';
     }
 
     .col-accion {
-        width: 40px;
+        width: 90px;
         text-align: center;
     }
 
@@ -115,12 +115,12 @@ $saldo = $_SESSION['saldo'] ?? '0.00';
     }
 
     .col-entrega {
-        width: 50px;
+        width: 30px;
         text-align: center;
     }
 
     .col-estado {
-        width: 220px;
+        width: 90px;
         text-align: center;
     }
 
@@ -131,7 +131,7 @@ $saldo = $_SESSION['saldo'] ?? '0.00';
     }
 
     .col-comprobante {
-        width: 10px;
+        width: 30px;
         text-align: center;
     }
 </style>
