@@ -6,8 +6,7 @@ error_reporting(E_ALL);
 
 session_start();
 require_once __DIR__ . '/../../config.php';
-require_once __DIR__ . '/../../models/papa_dashboardModel.php';
-require_once __DIR__ . '/papa_dashboardController.php';
+require_once __DIR__ . '/../../controllers/papa_dashboardController.php';
 
 // ⚠️ Expiración por inactividad (20 minutos)
 if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > 1200)) {

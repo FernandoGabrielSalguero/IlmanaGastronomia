@@ -1,5 +1,6 @@
 <?php
-require_once __DIR__ . '/papa_dashboardModel.php';
+require_once __DIR__ . '/../models/papa_dashboardModel.php';
+
 
 $model = new PapaDashboardModel($pdo);
 
