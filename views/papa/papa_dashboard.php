@@ -121,139 +121,122 @@ $saldo = $_SESSION['saldo'] ?? '0.00';
                 <div class="card">
                     <form method="GET" class="form-modern">
                         <div class="grid-3">
+                            <!-- Filtro: Hijo -->
+                            <div class="input-group">
+                                <label for="hijo_id">Nombre del alumno</label>
+                                <div class="input-icon input-icon-user">
+                                    <select id="hijo_id" name="hijo_id">
+                                        <option value="">Todos</option>
+                                        <?php foreach ($hijos as $hijo): ?>
+                                            <option value="<?= $hijo['Id'] ?>" <?= $hijoSeleccionado == $hijo['Id'] ? 'selected' : '' ?>>
+                                                <?= htmlspecialchars($hijo['Nombre']) ?>
+                                            </option>
+                                        <?php endforeach; ?>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- Filtro: Desde -->
                             <div class="input-group">
                                 <label for="desde">Desde</label>
-                                <input type="date" name="desde" value="<?= htmlspecialchars($desde) ?>">
+                                <div class="input-icon input-icon-date">
+                                    <input type="date" id="desde" name="desde" value="<?= htmlspecialchars($desde) ?>">
+                                </div>
                             </div>
+
+                            <!-- Filtro: Hasta -->
                             <div class="input-group">
                                 <label for="hasta">Hasta</label>
-                                <input type="date" name="hasta" value="<?= htmlspecialchars($hasta) ?>">
-                            </div>
-                            <div class="input-group">
-                                <label for="hijo_id">Hijo</label>
-                                <select name="hijo_id">
-                                    <option value="">Todos</option>
-                                    <?php foreach ($hijos as $hijo): ?>
-                                        <option value="<?= $hijo['Id'] ?>" <?= $hijoSeleccionado == $hijo['Id'] ? 'selected' : '' ?>>
-                                            <?= htmlspecialchars($hijo['Nombre']) ?>
-                                        </option>
-                                    <?php endforeach; ?>
-                                </select>
+                                <div class="input-icon input-icon-date">
+                                    <input type="date" id="hasta" name="hasta" value="<?= htmlspecialchars($hasta) ?>">
+                                </div>
                             </div>
                         </div>
+
                         <div class="form-buttons">
-                            <button class="btn btn-aceptar" type="submit">Aplicar Filtros</button>
+                            <button class="btn btn-aceptar" type="submit">Aplicar filtros</button>
                         </div>
                     </form>
                 </div>
 
+
                 <!-- Tablas de resultados -->
                 <div class="card-grid grid-2">
-                    <!-- Tabla con pedidos de comida -->
+                    <!-- Pedidos de Comida -->
                     <div class="card tabla-card">
-                        <h2>Tablas</h2>
+                        <h2>Pedidos de comida</h2>
                         <div class="tabla-wrapper">
                             <table class="data-table">
                                 <thead>
                                     <tr>
                                         <th>#</th>
-                                        <th>Nombre</th>
-                                        <th>Apellido</th>
-                                        <th>Apodo</th>
-                                        <th>Edad</th>
-                                        <th>Genero</th>
-                                        <th>Estado civil</th>
-                                        <th>Antecedentes</th>
-                                        <th>Email</th>
-                                        <th>Rol</th>
+                                        <th>Fecha Entrega</th>
+                                        <th>Fecha Pedido</th>
                                         <th>Estado</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Carlos</td>
-                                        <td>Ruiz</td>
-                                        <td>Carlos</td>
-                                        <td>19</td>
-                                        <td>Masculino</td>
-                                        <td>Soltero</td>
-                                        <td>Sin precedentes</td>
-                                        <td>carlos@mail.com</td>
-                                        <td>Administrador</td>
-                                        <td><span class="badge success">Activo</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>Laura</td>
-                                        <td>Méndez</td>
-                                        <td>Laura</td>
-                                        <td>22</td>
-                                        <td>Femenino</td>
-                                        <td>Soltera</td>
-                                        <td>Con antecedentes</td>
-                                        <td>laura@mail.com</td>
-                                        <td>Editor</td>
-                                        <td><span class="badge warning">Pendiente</span></td>
-                                    </tr>
+                                    <?php if (!empty($pedidosComida)): ?>
+                                        <?php foreach ($pedidosComida as $pedido): ?>
+                                            <tr>
+                                                <td><?= $pedido['Id'] ?></td>
+                                                <td><?= $pedido['Fecha_entrega'] ?></td>
+                                                <td><?= $pedido['Fecha_pedido'] ?></td>
+                                                <td>
+                                                    <span class="badge <?= $pedido['Estado'] === 'Procesando' ? 'success' : 'danger' ?>">
+                                                        <?= $pedido['Estado'] ?>
+                                                    </span>
+                                                </td>
+                                            </tr>
+                                        <?php endforeach; ?>
+                                    <?php else: ?>
+                                        <tr>
+                                            <td colspan="4">No hay pedidos de comida.</td>
+                                        </tr>
+                                    <?php endif; ?>
                                 </tbody>
                             </table>
                         </div>
                     </div>
 
-                    <!-- Tabla con epdidos de saldo -->
+                    <!-- Pedidos de Saldo -->
                     <div class="card tabla-card">
-                        <h2>Tablas</h2>
+                        <h2>Pedidos de saldo</h2>
                         <div class="tabla-wrapper">
                             <table class="data-table">
                                 <thead>
                                     <tr>
                                         <th>#</th>
-                                        <th>Nombre</th>
-                                        <th>Apellido</th>
-                                        <th>Apodo</th>
-                                        <th>Edad</th>
-                                        <th>Genero</th>
-                                        <th>Estado civil</th>
-                                        <th>Antecedentes</th>
-                                        <th>Email</th>
-                                        <th>Rol</th>
+                                        <th>Monto</th>
                                         <th>Estado</th>
+                                        <th>Fecha Pedido</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Carlos</td>
-                                        <td>Ruiz</td>
-                                        <td>Carlos</td>
-                                        <td>19</td>
-                                        <td>Masculino</td>
-                                        <td>Soltero</td>
-                                        <td>Sin precedentes</td>
-                                        <td>carlos@mail.com</td>
-                                        <td>Administrador</td>
-                                        <td><span class="badge success">Activo</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>Laura</td>
-                                        <td>Méndez</td>
-                                        <td>Laura</td>
-                                        <td>22</td>
-                                        <td>Femenino</td>
-                                        <td>Soltera</td>
-                                        <td>Con antecedentes</td>
-                                        <td>laura@mail.com</td>
-                                        <td>Editor</td>
-                                        <td><span class="badge warning">Pendiente</span></td>
-                                    </tr>
+                                    <?php if (!empty($pedidosSaldo)): ?>
+                                        <?php foreach ($pedidosSaldo as $saldo): ?>
+                                            <tr>
+                                                <td><?= $saldo['Id'] ?></td>
+                                                <td>$<?= number_format($saldo['Saldo'], 2, ',', '.') ?></td>
+                                                <td>
+                                                    <span class="badge <?= $saldo['Estado'] === 'Aprobado' ? 'success' : ($saldo['Estado'] === 'Cancelado' ? 'danger' : 'warning') ?>">
+                                                        <?= $saldo['Estado'] ?>
+                                                    </span>
+                                                </td>
+                                                <td><?= $saldo['Fecha_pedido'] ?></td>
+                                            </tr>
+                                        <?php endforeach; ?>
+                                    <?php else: ?>
+                                        <tr>
+                                            <td colspan="4">No hay pedidos de saldo.</td>
+                                        </tr>
+                                    <?php endif; ?>
                                 </tbody>
                             </table>
                         </div>
                     </div>
-
                 </div>
+
 
             </section>
         </div>
