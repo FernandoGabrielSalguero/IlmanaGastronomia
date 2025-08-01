@@ -106,32 +106,32 @@ $saldo = $_SESSION['saldo'] ?? '0.00';
 
 .col-alumno {
     min-width: 100px;
-    max-width: 140px;
+    max-width: 101px;
 }
 
 .col-menu {
-    min-width: 120px;
-    max-width: 160px;
+    min-width: 100px;
+    max-width: 101px;
 }
 
 .col-entrega {
-    width: 120px;
+    width: 80px;
     text-align: center;
 }
 
 .col-estado {
-    width: 100px;
+    width: 80px;
     text-align: center;
 }
 
 /* 📐 Anchos columna pedidos saldo */
 .col-saldo {
-    width: 100px;
+    width: 80px;
     text-align: right;
 }
 
 .col-comprobante {
-    width: 20px;
+    width: 10px;
     text-align: center;
 }
 
