@@ -34,14 +34,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if ($user) {
         // Guardar solo los datos de la tabla Usuarios en sesión
-        $_SESSION['usuario_id'] = $user['id_real'];
-        $_SESSION['usuario'] = $user['usuario'];
-        $_SESSION['nombre'] = $user['nombre'];
-        $_SESSION['correo'] = $user['correo'];
-        $_SESSION['telefono'] = $user['telefono'];
-        $_SESSION['rol'] = $user['rol'];
-        $_SESSION['estado'] = $user['estado'];
-        $_SESSION['saldo'] = $user['saldo'] ?? 0.00;
+        $_SESSION['usuario_id'] = $user['Id'];
+        $_SESSION['usuario_id'] = $user['Id'];
+        $_SESSION['usuario'] = $user['Usuario'];
+        $_SESSION['nombre'] = $user['Nombre'];
+        $_SESSION['correo'] = $user['Correo'];
+        $_SESSION['telefono'] = $user['Telefono'];
+        $_SESSION['rol'] = $user['Rol'];
+        $_SESSION['estado'] = $user['Estado'];
+        $_SESSION['saldo'] = $user['Saldo'] ?? 0.00;
         $_SESSION['LAST_ACTIVITY'] = time();
 
         // Redirección obligatoria si falta contraseña y es asociado
