@@ -56,6 +56,30 @@ $saldo = $_SESSION['saldo'] ?? '0.00';
     <link rel="stylesheet" href="https://www.fernandosalguero.com/cdn/assets/css/framework.css">
     <script src="https://www.fernandosalguero.com/cdn/assets/javascript/framework.js" defer></script>
 </head>
+<style>
+    .tabla-wrapper {
+        max-height: 400px;
+        /* Ajusta si querés más o menos alto */
+        overflow-y: auto;
+    }
+
+    .tabla-wrapper table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    .tabla-wrapper thead th {
+        position: sticky;
+        top: 0;
+        background-color: #fff;
+        z-index: 2;
+    }
+
+    .tabla-wrapper tbody tr {
+        height: 44px;
+        /* Aproximadamente 9 filas entran en 400px */
+    }
+</style>
 
 <body>
 
