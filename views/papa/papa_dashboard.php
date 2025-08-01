@@ -58,61 +58,65 @@ $saldo = $_SESSION['saldo'] ?? '0.00';
 </head>
 <style>
     /* Contenedor de tabla con scroll vertical */
-.tabla-wrapper {
-    max-height: 450px;
-    overflow-y: auto;
-}
+    .tabla-wrapper {
+        max-height: 450px;
+        overflow-y: auto;
+    }
 
-/* Tabla con ajuste dinámico de columnas */
-.tabla-wrapper table {
-    border-collapse: collapse;
-    width: 100%;
-    table-layout: auto; /* ⚠️ CLAVE: que se adapte al contenido */
-}
+    /* Tabla con ajuste dinámico de columnas */
+    .tabla-wrapper table {
+        border-collapse: collapse;
+        width: 100%;
+        table-layout: auto;
+        /* ⚠️ CLAVE: que se adapte al contenido */
+    }
 
-/* Cabecera fija */
-.tabla-wrapper thead th {
-    position: sticky;
-    top: 0;
-    background-color: #fff;
-    z-index: 2;
-}
+    /* Cabecera fija */
+    .tabla-wrapper thead th {
+        position: sticky;
+        top: 0;
+        background-color: #fff;
+        z-index: 2;
+    }
 
-/* Altura de filas */
-.tabla-wrapper tbody tr {
-    height: 44px;
-}
+    /* Altura de filas */
+    .tabla-wrapper tbody tr {
+        height: 44px;
+    }
 
-/* Estilos generales de celdas */
-.data-table th,
-.data-table td {
-    padding: 6px 8px;
-    vertical-align: middle;
-    overflow: hidden;
-}
+    /* Estilos generales de celdas */
+    .data-table th,
+    .data-table td {
+        padding: 6px 8px;
+        vertical-align: middle;
+        overflow: hidden;
+    }
 
-/* Si querés permitir quiebre de línea en algunas columnas */
-.breakable {
-    white-space: normal !important;
-    word-wrap: break-word;
-}
+    /* Si querés permitir quiebre de línea en algunas columnas */
+    .breakable {
+        white-space: normal !important;
+        word-wrap: break-word;
+    }
 
-/* ✅ Clase opcional para limitar ancho máximo (solo si se aplica explícitamente) */
-.max-150 {
-    max-width: 150px;
-    white-space: normal;          /* Permite saltos de línea */
-    overflow-wrap: break-word;   /* Corta palabras si es necesario */
-    word-break: break-word;      /* Compatibilidad con navegadores */
-}
+    /* ✅ Clase opcional para limitar ancho máximo (solo si se aplica explícitamente) */
+    .max-150 {
+        max-width: 150px;
+        white-space: normal;
+        /* Permite saltos de línea */
+        overflow-wrap: break-word;
+        /* Corta palabras si es necesario */
+        word-break: break-word;
+        /* Compatibilidad con navegadores */
+    }
 
-/* ancho boton de comprobante */
-.max-40 {
-    max-width: 40px;
-    width: 1%; /* 👈 fuerza que se adapte al mínimo posible */
-    text-align: center;
-    white-space: nowrap;
-}
-
+    /* ancho boton de comprobante */
+    .max-40 {
+        max-width: 40px;
+        width: 1%;
+        /* 👈 fuerza que se adapte al mínimo posible */
+        text-align: center;
+        white-space: nowrap;
+    }
 </style>
 
 <body>
@@ -235,12 +239,12 @@ $saldo = $_SESSION['saldo'] ?? '0.00';
                                     <?php if (!empty($pedidosComida)): ?>
                                         <?php foreach ($pedidosComida as $pedido): ?>
                                             <tr>
-                                                <td ><?= $pedido['Id'] ?></td>
-                                                <td ><button class="btn btn-small">Cancelar</button></td>
+                                                <td><?= $pedido['Id'] ?></td>
+                                                <td><button class="btn btn-small">Cancelar</button></td>
                                                 <td class="max-150 breakable"><?= htmlspecialchars($pedido['Alumno']) ?></td>
                                                 <td class="max-150 breakable"><?= htmlspecialchars($pedido['Menu']) ?></td>
-                                                <td ><?= $pedido['Fecha_entrega'] ?></td>
-                                                <td >
+                                                <td><?= $pedido['Fecha_entrega'] ?></td>
+                                                <td>
                                                     <span class="badge <?= $pedido['Estado'] === 'Procesando' ? 'success' : 'danger' ?>">
                                                         <?= $pedido['Estado'] ?>
                                                     </span>
@@ -264,9 +268,9 @@ $saldo = $_SESSION['saldo'] ?? '0.00';
                             <table class="data-table">
                                 <thead>
                                     <tr>
-                                        <th >#</th>
-                                        <th >Saldo</th>
-                                        <th >Estado</th>
+                                        <th>#</th>
+                                        <th>Saldo</th>
+                                        <th class="max-150">Estado</th>
                                         <th>Comprobante</th>
                                     </tr>
                                 </thead>
@@ -274,25 +278,25 @@ $saldo = $_SESSION['saldo'] ?? '0.00';
                                     <?php if (!empty($pedidosSaldo)): ?>
                                         <?php foreach ($pedidosSaldo as $saldo): ?>
                                             <tr>
-                                                <td ><?= $saldo['Id'] ?></td>
-                                                <td >$<?= number_format($saldo['Saldo'], 2, ',', '.') ?></td>
-                                                <td >
+                                                <td><?= $saldo['Id'] ?></td>
+                                                <td>$<?= number_format($saldo['Saldo'], 2, ',', '.') ?></td>
+                                                <td class="max-150">
                                                     <span class="badge <?= $saldo['Estado'] === 'Aprobado' ? 'success' : ($saldo['Estado'] === 'Cancelado' ? 'danger' : 'warning') ?>">
                                                         <?= $saldo['Estado'] ?>
                                                     </span>
                                                 </td>
-<td class="max-40">
-    <?php if (!empty($saldo['Comprobante'])): ?>
-        <a href="/sistema/uploads/tax_invoices/<?= urlencode($saldo['Comprobante']) ?>"
-            target="_blank"
-            title="Ver comprobante"
-            style="display: inline-block; padding: 0; margin: 0; text-decoration: none;">
-            <span class="material-icons" style="font-size: 20px; color: #5b21b6;">visibility</span>
-        </a>
-    <?php else: ?>
-        <span class="text-muted">—</span>
-    <?php endif; ?>
-</td>
+                                                <td class="max-40">
+                                                    <?php if (!empty($saldo['Comprobante'])): ?>
+                                                        <a href="/sistema/uploads/tax_invoices/<?= urlencode($saldo['Comprobante']) ?>"
+                                                            target="_blank"
+                                                            title="Ver comprobante"
+                                                            style="display: inline-block; padding: 0; margin: 0; text-decoration: none;">
+                                                            <span class="material-icons" style="font-size: 20px; color: #5b21b6;">visibility</span>
+                                                        </a>
+                                                    <?php else: ?>
+                                                        <span class="text-muted">—</span>
+                                                    <?php endif; ?>
+                                                </td>
                                             </tr>
                                         <?php endforeach; ?>
                                     <?php else: ?>
