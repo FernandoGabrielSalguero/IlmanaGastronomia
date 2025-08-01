@@ -1,11 +1,13 @@
 <?php
-// Mostrar errores en pantalla (útil en desarrollo)
+// Mostrar errores
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-// Iniciar sesión y proteger acceso
 session_start();
+require_once __DIR__ . '/../../config.php';
+require_once __DIR__ . '/../../models/papa_dashboardModel.php';
+require_once __DIR__ . '/papa_dashboardController.php';
 
 // ⚠️ Expiración por inactividad (20 minutos)
 if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > 1200)) {
@@ -116,42 +118,100 @@ $saldo = $_SESSION['saldo'] ?? '0.00';
                     <p>En esta página, vamos a tener KPI.</p>
                 </div>
 
+<!-- Filtros -->
+<div class="card">
+    <form method="GET" class="form-modern">
+        <div class="grid-3">
+            <div class="input-group">
+                <label for="desde">Desde</label>
+                <input type="date" name="desde" value="<?= htmlspecialchars($desde) ?>">
+            </div>
+            <div class="input-group">
+                <label for="hasta">Hasta</label>
+                <input type="date" name="hasta" value="<?= htmlspecialchars($hasta) ?>">
+            </div>
+            <div class="input-group">
+                <label for="hijo_id">Hijo</label>
+                <select name="hijo_id">
+                    <option value="">Todos</option>
+                    <?php foreach ($hijos as $hijo): ?>
+                        <option value="<?= $hijo['Id'] ?>" <?= $hijoSeleccionado == $hijo['Id'] ? 'selected' : '' ?>>
+                            <?= htmlspecialchars($hijo['Nombre']) ?>
+                        </option>
+                    <?php endforeach; ?>
+                </select>
+            </div>
+        </div>
+        <div class="form-buttons">
+            <button class="btn btn-aceptar" type="submit">Aplicar Filtros</button>
+        </div>
+    </form>
+</div>
 
-                <div class="card-grid grid-2">
-                    <div class="card">
-                        <h3>KPI 1</h3>
-                        <p>Contenido 1</p>
-                    </div>
-                    <div class="card">
-                        <h3>KPI 2</h3>
-                        <p>Contenido 2</p>
-                    </div>
-                </div>
+<!-- Tablas de resultados -->
+<div class="card-grid grid-2">
+    <div class="card">
+        <h3>Pedidos de Comida</h3>
+        <?php if (count($pedidosComida) > 0): ?>
+            <table class="table-modern">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Fecha entrega</th>
+                        <th>Fecha pedido</th>
+                        <th>Estado</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach ($pedidosComida as $pedido): ?>
+                        <tr>
+                            <td><?= $pedido['Id'] ?></td>
+                            <td><?= $pedido['Fecha_entrega'] ?></td>
+                            <td><?= $pedido['Fecha_pedido'] ?></td>
+                            <td><?= $pedido['Estado'] ?></td>
+                        </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+        <?php else: ?>
+            <p>No hay pedidos de comida.</p>
+        <?php endif; ?>
+    </div>
 
-
-                <div class="card">
-                    <form class="form-modern">
-                        <div class="input-group">
-                            <label>Correo</label>
-                            <div class="input-icon">
-                                <span class="material-icons">mail</span>
-                                <input type="email" placeholder="ejemplo@correo.com">
-                            </div>
-                        </div>
-
-                        <div class="form-buttons">
-                            <button class="btn btn-aceptar" type="submit">Enviar</button>
-                            <button class="btn btn-cancelar" type="button">Cancelar</button>
-                        </div>
-                    </form>
-                </div>
+    <div class="card">
+        <h3>Pedidos de Saldo</h3>
+        <?php if (count($pedidosSaldo) > 0): ?>
+            <table class="table-modern">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Saldo</th>
+                        <th>Estado</th>
+                        <th>Fecha pedido</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach ($pedidosSaldo as $saldo): ?>
+                        <tr>
+                            <td><?= $saldo['Id'] ?></td>
+                            <td>$<?= number_format($saldo['Saldo'], 2, ',', '.') ?></td>
+                            <td><?= $saldo['Estado'] ?></td>
+                            <td><?= $saldo['Fecha_pedido'] ?></td>
+                        </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+        <?php else: ?>
+            <p>No hay pedidos de saldo.</p>
+        <?php endif; ?>
+    </div>
+</div>
 
             </section>
-
         </div>
     </div>
     <!-- Spinner Global -->
-    <script src="../../views/partials/spinner-global.js"></script>
+    <script src="../partials/spinner-global.js"></script>
 
     <script>
         console.log(<?php echo json_encode($_SESSION); ?>);
