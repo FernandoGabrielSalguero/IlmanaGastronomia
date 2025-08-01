@@ -1,1 +1,0 @@
-ALTER TABLE Pedidos_Comida ADD COLUMN Hijo_Id INT;
