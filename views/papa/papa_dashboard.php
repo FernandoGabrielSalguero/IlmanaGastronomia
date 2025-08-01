@@ -123,6 +123,28 @@ $saldo = $_SESSION['saldo'] ?? '0.00';
     white-space: normal !important;
     overflow-wrap: break-word;
 }
+
+/* estilos columna tabla pedidos saldo */
+.col-id {
+    width: 60px;
+}
+
+.col-saldo {
+    width: 100px;
+    text-align: right;
+}
+
+.col-estado {
+    width: 140px;
+    text-align: center;
+}
+
+.col-comprobante {
+    width: 140px;
+    white-space: normal !important;
+    overflow-wrap: break-word;
+    text-align: center;
+}
 </style>
 
 <body>
@@ -272,26 +294,26 @@ $saldo = $_SESSION['saldo'] ?? '0.00';
                         <h2>Pedidos de saldo</h2>
                         <div class="tabla-wrapper">
                             <table class="data-table">
-                                <thead>
-                                    <tr>
-                                        <th>#</th>
-                                        <th>Saldo</th>
-                                        <th>Estado</th>
-                                        <th>Comprobante</th>
-                                    </tr>
-                                </thead>
+<thead>
+    <tr>
+        <th class="col-id">#</th>
+        <th class="col-saldo">Saldo</th>
+        <th class="col-estado">Estado</th>
+        <th class="col-comprobante">Comprobante</th>
+    </tr>
+</thead>
                                 <tbody>
                                     <?php if (!empty($pedidosSaldo)): ?>
                                         <?php foreach ($pedidosSaldo as $saldo): ?>
                                             <tr>
-                                                <td ><?= $saldo['Id'] ?></td>
-                                                <td>$<?= number_format($saldo['Saldo'], 2, ',', '.') ?></td>
-                                                <td>
+                                                <td class="col-id"><?= $saldo['Id'] ?></td>
+                                                <td class="col-saldo">$<?= number_format($saldo['Saldo'], 2, ',', '.') ?></td>
+                                                <td class="col-estado">
                                                     <span class="badge <?= $saldo['Estado'] === 'Aprobado' ? 'success' : ($saldo['Estado'] === 'Cancelado' ? 'danger' : 'warning') ?>">
                                                         <?= $saldo['Estado'] ?>
                                                     </span>
                                                 </td>
-                                                <td>
+                                                <td class="col-comprobante">
                                                     <?php if (!empty($saldo['Comprobante'])): ?>
                                                         <a href="/sistema/uploads/tax_invoices/<?= urlencode($saldo['Comprobante']) ?>"
                                                             target="_blank"
