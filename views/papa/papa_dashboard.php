@@ -104,6 +104,12 @@ $saldo = $_SESSION['saldo'] ?? '0.00';
         width: 180px;
     }
 
+    .col-alumno {
+    width: 180px;
+    white-space: normal !important;
+    overflow-wrap: break-word;
+}
+
     .col-entrega,
     .col-estado,
     .col-comprobante {
