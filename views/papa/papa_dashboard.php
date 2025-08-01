@@ -177,7 +177,6 @@ $saldo = $_SESSION['saldo'] ?? '0.00';
                                             <tr>
                                                 <td><?= $pedido['Id'] ?></td>
                                                 <td><?= $pedido['Fecha_entrega'] ?></td>
-                                                <td><?= $pedido['Fecha_pedido'] ?></td>
                                                 <td>
                                                     <span class="badge <?= $pedido['Estado'] === 'Procesando' ? 'success' : 'danger' ?>">
                                                         <?= $pedido['Estado'] ?>
