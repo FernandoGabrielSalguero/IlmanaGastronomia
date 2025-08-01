@@ -167,7 +167,6 @@ $saldo = $_SESSION['saldo'] ?? '0.00';
                                     <tr>
                                         <th>#</th>
                                         <th>Fecha Entrega</th>
-                                        <th>Fecha Pedido</th>
                                         <th>Estado</th>
                                     </tr>
                                 </thead>
