@@ -107,7 +107,9 @@ $saldo = $_SESSION['saldo'] ?? '0.00';
     }
 
     .max-80 {
-        max-width: 100px;
+        width: 80px;
+        /* ✅ Lo fuerza como sugerencia */
+        max-width: 80px;
         white-space: normal;
         overflow-wrap: break-word;
         word-break: break-word;
@@ -115,11 +117,17 @@ $saldo = $_SESSION['saldo'] ?? '0.00';
 
     /* ancho boton de comprobante */
     .max-40 {
+        width: 40px;
         max-width: 40px;
-        width: 1%;
-        /* 👈 fuerza que se adapte al mínimo posible */
         text-align: center;
-        white-space: nowrap;
+    }
+
+    .badge {
+        display: inline-block;
+        max-width: 100%;
+        overflow-wrap: break-word;
+        word-break: break-word;
+        white-space: normal;
     }
 </style>
 
