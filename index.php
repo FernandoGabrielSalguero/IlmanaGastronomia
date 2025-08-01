@@ -54,7 +54,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 header('Location: /views/cocina/cocina_dashboard.php');
                 break;
             case 'cuyo_placa':
-                header('Location: /views/cuyo_placa/cuyo_placa_dashboard.php');
+                header('Location: /views/cuyo_placas/cuyo_placa_dashboard.php');
                 break;
             case 'papas':
                 header('Location: /views/papa/papa_dashboard.php');
