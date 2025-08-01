@@ -58,7 +58,7 @@ $saldo = $_SESSION['saldo'] ?? '0.00';
 </head>
 <style>
     .tabla-wrapper {
-        max-height: 400px;
+        max-height: 450px;
         /* Ajusta si querés más o menos alto */
         overflow-y: auto;
     }
@@ -78,6 +78,37 @@ $saldo = $_SESSION['saldo'] ?? '0.00';
     .tabla-wrapper tbody tr {
         height: 44px;
         /* Aproximadamente 9 filas entran en 400px */
+    }
+
+    /* medidas columnas */
+    /* General: evita que las celdas se expandan sin límite */
+    .data-table th,
+    .data-table td {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    /* Anchos sugeridos para cada columna */
+    .col-id {
+        width: 60px;
+    }
+
+    .col-accion {
+        width: 80px;
+        text-align: center;
+    }
+
+    .col-alumno,
+    .col-menu {
+        width: 180px;
+    }
+
+    .col-entrega,
+    .col-estado,
+    .col-comprobante {
+        width: 120px;
+        text-align: center;
     }
 </style>
 
@@ -189,24 +220,24 @@ $saldo = $_SESSION['saldo'] ?? '0.00';
                             <table class="data-table">
                                 <thead>
                                     <tr>
-                                        <th>#</th>
-                                        <th>Acción</th>
-                                        <th>Alumno</th>
-                                        <th>Menú</th>
-                                        <th>Fecha de entrega</th>
-                                        <th>Estado</th>
+                                        <th class="col-id">#</th>
+                                        <th class="col-accion">Acción</th>
+                                        <th class="col-alumno">Alumno</th>
+                                        <th class="col-menu">Menú</th>
+                                        <th class="col-entrega">Fecha de entrega</th>
+                                        <th class="col-estado">Estado</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php if (!empty($pedidosComida)): ?>
                                         <?php foreach ($pedidosComida as $pedido): ?>
                                             <tr>
-                                                <td><?= $pedido['Id'] ?></td>
-                                                <td><button class="btn btn-small">Ver</button></td>
-                                                <td><?= htmlspecialchars($pedido['Alumno']) ?></td>
-                                                <td><?= htmlspecialchars($pedido['Menu']) ?></td>
-                                                <td><?= $pedido['Fecha_entrega'] ?></td>
-                                                <td>
+                                                <td class="col-id"><?= $pedido['Id'] ?></td>
+                                                <td class="col-accion"><button class="btn btn-small">Cancelar</button></td>
+                                                <td class="col-alumno"><?= htmlspecialchars($pedido['Alumno']) ?></td>
+                                                <td class="col-menu"><?= htmlspecialchars($pedido['Menu']) ?></td>
+                                                <td class="col-entrega"><?= $pedido['Fecha_entrega'] ?></td>
+                                                <td class="col-estado">
                                                     <span class="badge <?= $pedido['Estado'] === 'Procesando' ? 'success' : 'danger' ?>">
                                                         <?= $pedido['Estado'] ?>
                                                     </span>
@@ -240,7 +271,7 @@ $saldo = $_SESSION['saldo'] ?? '0.00';
                                     <?php if (!empty($pedidosSaldo)): ?>
                                         <?php foreach ($pedidosSaldo as $saldo): ?>
                                             <tr>
-                                                <td><?= $saldo['Id'] ?></td>
+                                                <td ><?= $saldo['Id'] ?></td>
                                                 <td>$<?= number_format($saldo['Saldo'], 2, ',', '.') ?></td>
                                                 <td>
                                                     <span class="badge <?= $saldo['Estado'] === 'Aprobado' ? 'success' : ($saldo['Estado'] === 'Cancelado' ? 'danger' : 'warning') ?>">
