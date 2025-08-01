@@ -267,7 +267,7 @@ $saldo = $_SESSION['saldo'] ?? '0.00';
                                         <th >#</th>
                                         <th >Saldo</th>
                                         <th >Estado</th>
-                                        <th class="max-40" >Comprobante</th>
+                                        <th>Comprobante</th>
                                     </tr>
                                 </thead>
                                 <tbody>
