@@ -120,7 +120,7 @@ $saldo = $_SESSION['saldo'] ?? '0.00';
     }
 
     .col-estado {
-        width: 33px;
+        width: 66px;
         text-align: center;
     }
 
