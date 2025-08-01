@@ -1,0 +1,288 @@
+/* Estilo para el header */
+.header {
+    background-color: #f8f9fa;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.header .nav {
+    display: flex;
+    justify-content: space-around;
+    gap: 20px;
+    width: 100%;
+}
+
+.header .nav a {
+    text-decoration: none;
+    padding: 10px 20px;
+    color: white;
+    background-color: #28a745;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.header .nav a.logout {
+    background-color: #dc3545;
+}
+
+.header .nav a:hover {
+    opacity: 0.9;
+}
+
+.header .nav a.active {
+    background-color: #007bff;
+}
+
+/* Estilo general de la página */
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f4f5f7;
+    margin: 0;
+    padding: 20px;
+}
+
+/* Estilos para el contenedor de las tablas */
+.table-container {
+    width: 100%;
+    margin: 0 auto;
+    max-width: 100%;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+table th, table td {
+    border: 1px solid #e0e0e0;
+    padding: 12px;
+    text-align: center;
+}
+
+table th {
+    background-color: #fafafa;
+    color: #333;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+table td {
+    background-color: #ffffff;
+    color: #666;
+}
+
+.table-container input, .table-container select {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+/* Estilo para botones */
+.button {
+    background-color: #28a745;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.button[disabled] {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+.button:hover {
+    background-color: #218838;
+}
+
+.button-container {
+    text-align: center;
+}
+
+/* Estilo para las tarjetas */
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.pedido-card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    max-width: 32%;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.pedido-card h3 {
+    margin: 0;
+    font-size: 1.5em;
+    color: #007bff;
+}
+
+.pedido-card table {
+    width: 100%;
+    margin: 10px 0;
+    border-collapse: collapse;
+}
+
+.pedido-card table th, .pedido-card table td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: center;
+}
+
+.estado-saldo {
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+.estado-saldo.adeudado {
+    color: red;
+}
+
+.estado-saldo.pagado {
+    color: green;
+}
+
+@media (max-width: 768px) {
+    .pedido-card {
+        flex: 1 1 calc(50% - 20px);
+    }
+}
+
+@media (max-width: 480px) {
+    .pedido-card {
+        flex: 1 1 100%;
+    }
+}
+
+/* Filtros */
+.filter-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    gap: 10px;
+}
+
+.filter-container select, .filter-container input[type="date"] {
+    padding: 10px;
+    font-size: 1em;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.filter-container button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+
+/* General container for the form */
+form {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Headings for the form */
+h1, h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+/* Form labels */
+label {
+    display: block;
+    font-weight: bold;
+    color: #666;
+    margin-bottom: 5px;
+}
+
+/* Form inputs and selects */
+input[type="text"],
+input[type="number"],
+input[type="date"],
+input[type="time"],
+textarea,
+select {
+    width: calc(100% - 22px); /* To accommodate padding */
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 16px;
+    transition: border-color 0.3s;
+}
+
+/* Focus effect for inputs and selects */
+input:focus,
+select:focus,
+textarea:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+/* Styles for the submit button */
+button[type="submit"] {
+    background-color: #28a745;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    display: block;
+    margin: 0 auto;
+    transition: background-color 0.3s;
+}
+
+/* Hover effect for the submit button */
+button[type="submit"]:hover {
+    background-color: #218838;
+}
+
+/* Form textarea for observations */
+textarea {
+    width: calc(100% - 22px); /* To accommodate padding */
+    padding: 10px;
+    height: 100px;
+    resize: vertical;
+}
+
+/* Responsive adjustments for small screens */
+@media (max-width: 768px) {
+    form {
+        width: 100%;
+        padding: 15px;
+    }
+}
