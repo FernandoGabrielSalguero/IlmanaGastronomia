@@ -33,15 +33,6 @@ class AuthModel
         $stmt->execute(['usuario' => $usuario]);
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        if (!$user || $user['estado'] !== 'activo') {
-            return false;
-        }
-
-        // Permitir acceso si no tiene contraseña y es asociado
-        if (empty($user['contrasena']) && $user['rol'] === 'asociado') {
-            return $user;
-        }
-
         $hash = $user['contrasena'];
         $isHashed = preg_match('/^\$2y\$/', $hash);
 
