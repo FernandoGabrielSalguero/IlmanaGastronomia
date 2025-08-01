@@ -100,9 +100,9 @@ $saldo = $_SESSION['saldo'] ?? '0.00';
 /* ✅ Clase opcional para limitar ancho máximo (solo si se aplica explícitamente) */
 .max-150 {
     max-width: 150px;
-    white-space: normal;       /* ✅ Permite múltiples líneas */
-    overflow-wrap: break-word; /* ✅ Corta las palabras si es necesario */
-    word-break: break-word;    /* ✅ Compatibilidad adicional */
+    white-space: normal;          /* Permite saltos de línea */
+    overflow-wrap: break-word;   /* Corta palabras si es necesario */
+    word-break: break-word;      /* Compatibilidad con navegadores */
 }
 
 </style>
