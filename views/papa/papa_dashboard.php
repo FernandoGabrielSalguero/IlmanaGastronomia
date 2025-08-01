@@ -61,12 +61,12 @@ $saldo = $_SESSION['saldo'] ?? '0.00';
     .tabla-wrapper {
         max-height: 450px;
         overflow-y: auto;
-        table-layout: fixed;
     }
 
     .tabla-wrapper table {
         border-collapse: collapse;
         width: 100%;
+        table-layout: fixed;
     }
 
     .tabla-wrapper thead th {
