@@ -102,11 +102,15 @@ $saldo = $_SESSION['saldo'] ?? '0.00';
     .max-150 {
         max-width: 150px;
         white-space: normal;
-        /* Permite saltos de línea */
         overflow-wrap: break-word;
-        /* Corta palabras si es necesario */
         word-break: break-word;
-        /* Compatibilidad con navegadores */
+    }
+
+        .max-100 {
+        max-width: 100px;
+        white-space: normal;
+        overflow-wrap: break-word;
+        word-break: break-word;
     }
 
     /* ancho boton de comprobante */
@@ -270,7 +274,7 @@ $saldo = $_SESSION['saldo'] ?? '0.00';
                                     <tr>
                                         <th>#</th>
                                         <th>Saldo</th>
-                                        <th class="max-150">Estado</th>
+                                        <th class="max-100">Estado</th>
                                         <th>Comprobante</th>
                                     </tr>
                                 </thead>
@@ -280,7 +284,7 @@ $saldo = $_SESSION['saldo'] ?? '0.00';
                                             <tr>
                                                 <td><?= $saldo['Id'] ?></td>
                                                 <td>$<?= number_format($saldo['Saldo'], 2, ',', '.') ?></td>
-                                                <td class="max-150">
+                                                <td class="max-100">
                                                     <span class="badge <?= $saldo['Estado'] === 'Aprobado' ? 'success' : ($saldo['Estado'] === 'Cancelado' ? 'danger' : 'warning') ?>">
                                                         <?= $saldo['Estado'] ?>
                                                     </span>
