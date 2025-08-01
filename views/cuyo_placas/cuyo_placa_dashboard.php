@@ -22,8 +22,8 @@ if (!isset($_SESSION['usuario'])) {
 }
 
 // 🔐 Protección por rol
-if (!isset($_SESSION['rol']) || $_SESSION['rol'] !== 'admin') {
-    die("🚫 Acceso restringido: esta página es solo para usuarios Administrador.");
+if (!isset($_SESSION['rol']) || $_SESSION['rol'] !== 'cuyo_placa') {
+    die("🚫 Acceso restringido: esta página es solo para usuarios cuyo_placa.");
 }
 
 // Datos del usuario en sesión
