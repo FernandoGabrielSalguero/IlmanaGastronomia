@@ -16,11 +16,17 @@ if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > 
 }
 $_SESSION['LAST_ACTIVITY'] = time(); // Actualiza el tiempo de actividad
 
+
+
 // 🧿 Control de sesión activa
 if (!isset($_SESSION['usuario_id']) || empty($_SESSION['nombre'])) {
     header("Location: /index.php?expired=1");
     exit;
 }
+
+echo "<pre>";
+print_r($_SESSION);
+exit;
 
 // 🔐 Validación estricta por rol
 if (!isset($_SESSION['rol']) || $_SESSION['rol'] !== 'papas') {
