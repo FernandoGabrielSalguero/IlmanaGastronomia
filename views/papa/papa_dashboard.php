@@ -230,7 +230,7 @@ $saldo = $_SESSION['saldo'] ?? '0.00';
                                                 <td ><?= $pedido['Id'] ?></td>
                                                 <td ><button class="btn btn-small">Cancelar</button></td>
                                                 <td class="max-150"><?= htmlspecialchars($pedido['Alumno']) ?></td>
-                                                <td class="max-150"><?= htmlspecialchars($pedido['Menu']) ?></td>
+                                                <td class="max-150 breakable"><?= htmlspecialchars($pedido['Menu']) ?></td>
                                                 <td ><?= $pedido['Fecha_entrega'] ?></td>
                                                 <td >
                                                     <span class="badge <?= $pedido['Estado'] === 'Procesando' ? 'success' : 'danger' ?>">
