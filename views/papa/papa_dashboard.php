@@ -107,13 +107,11 @@ $saldo = $_SESSION['saldo'] ?? '0.00';
     }
 
     .col-alumno {
-        min-width: 100px;
-        max-width: 101px;
+        width: 60px;
     }
 
     .col-menu {
-        min-width: 100px;
-        max-width: 101px;
+        width: 100px;
     }
 
     .col-entrega {
