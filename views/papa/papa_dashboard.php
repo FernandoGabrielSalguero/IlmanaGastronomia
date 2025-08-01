@@ -135,12 +135,12 @@ $saldo = $_SESSION['saldo'] ?? '0.00';
 }
 
 .col-estado {
-    width: 140px;
+    width: 80px;
     text-align: center;
 }
 
 .col-comprobante {
-    width: 140px;
+    width: 80px;
     white-space: normal !important;
     overflow-wrap: break-word;
     text-align: center;
