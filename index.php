@@ -45,8 +45,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $_SESSION['saldo'] = $user['Saldo'] ?? 0.00;
         $_SESSION['LAST_ACTIVITY'] = time();
 
-        // Redirección por rol
-        switch ($user['rol']) {
+        // Redirección por Rol
+        switch ($user['Rol']) {
             case 'administrador':
                 header('Location: /views/admin/admin_dashboard.php');
                 break;
@@ -63,7 +63,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 header('Location: /views/representante/representante_dashboard.php');
                 break;
             default:
-                die("Rol no reconocido: " . $user['rol']);
+                die("Rol no reconocido: " . $user['Rol']);
         }
         exit;
     }
