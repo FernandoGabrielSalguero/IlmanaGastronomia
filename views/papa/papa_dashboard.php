@@ -227,9 +227,10 @@ $saldo = $_SESSION['saldo'] ?? '0.00';
                                                     <?php if (!empty($saldo['Comprobante'])): ?>
                                                         <a href="/sistema/uploads/tax_invoices/<?= urlencode($saldo['Comprobante']) ?>"
                                                             target="_blank"
-                                                            class="btn btn-icon"
-                                                            title="Ver comprobante">
-                                                            <span class="material-icons">visibility</span>
+                                                            class="btn-icon"
+                                                            title="Ver comprobante"
+                                                            style="text-decoration: none;">
+                                                            <span class="material-icons" style="color: #5b21b6;">visibility</span>
                                                         </a>
                                                     <?php else: ?>
                                                         <span class="text-muted">—</span>
