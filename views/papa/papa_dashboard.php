@@ -117,7 +117,7 @@ $saldo = $_SESSION['saldo'] ?? '0.00';
                 </div>
 
 
-                <div class="card-grid grid-4">
+                <div class="card-grid grid-2">
                     <div class="card">
                         <h3>KPI 1</h3>
                         <p>Contenido 1</p>
@@ -125,14 +125,6 @@ $saldo = $_SESSION['saldo'] ?? '0.00';
                     <div class="card">
                         <h3>KPI 2</h3>
                         <p>Contenido 2</p>
-                    </div>
-                    <div class="card">
-                        <h3>KPI 3</h3>
-                        <p>Contenido 3</p>
-                    </div>
-                    <div class="card">
-                        <h3>KPI 4</h3>
-                        <p>Contenido 3</p>
                     </div>
                 </div>
 
